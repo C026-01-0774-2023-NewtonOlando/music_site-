@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>My Music Site</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f1f1;
+        }
+        .header {
+            background: #1a1a1a;
+            padding: 25px;
+            color: #fff;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        nav {
+            background: #1a1a1a;
+            padding: 8px 20px;
+            color: #fff;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            background: #fff;
+            margin: 20px;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        /* ORIGINAL ARTIST SMALL IMAGE KEEPING STYLE */
+        .artist-img {
+            width: 180px;
+           	height: 180px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 3px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        /* NEW FULL-WIDTH IMAGES YOU REQUESTED */
+        .full-width-img {
+            width: 100%;
+            max-height: 420px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-top: 25px;
+            margin-bottom: 20px;
+            border: 3px solid #ddd;
+        }
+
+        .support-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: #eee;
+            border-left: 6px solid #333;
+            border-radius: 6px;
+        }
+
+        .support-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .ig-link {
+            color: #d6249f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .ig-link:hover {
+            text-decoration: underline;
+        }
+
+        .wa-link {
+            color: #25D366;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .wa-link:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="header">My Music</div>
+
+    <nav>
+        <a href="register.php">Register</a> |
+        <a href="login.php">Login</a> |
+        <a href="songs.php">Songs</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- ORIGINAL SMALL ARTIST PHOTO (KEPT) -->
+        <img src="images/artist.jpg" alt="Dope Alfredo" class="artist-img">
+        <img src="images/2.jpg" alt="Dope Alfredo" class="artist-img">
+        <img src="images/3.jpg" alt="Dope Alfredo" class="artist-img">
+        <img src="images/4.jpg" alt="Dope Alfredo" class="artist-img">
+        <img src="images/5.jpg" alt="Dope Alfredo" class="artist-img">
+
+
+
+
+        <h2>Artist Description</h2>
+
+        <p style="font-size:17px;">
+            Welcome to <strong>Dope Alfredo World</strong> — Connecting with Humans Through Music.
+        </p>
+
+        <!-- NEW FULL-WIDTH SUPPORT IMAGE -->
+        <img src="images/support.jpg" alt="Support Photo" class="full-width-img">
+
+        <div class="support-box">
+            <div class="support-title">Support The Dope Alfredo Foundation</div>
+            <p>
+                Support The Dope Alfredo Foundation.<br>
+                <strong>Mpesa: 0702497840</strong>
+            </p>
+        </div>
+
+        <!-- NEW COMMUNICATION & ENQUIRIES SECTION -->
+        <div class="support-box" style="margin-top:30px;">
+            <div class="support-title">Communication & Enquiries</div>
+
+            <p>
+                To communicate or enquire <strong>after payment</strong>, reach us via WhatsApp:<br>
+                <a href="https://wa.me/254702497840" class="wa-link" target="_blank">
+                    Chat on WhatsApp (0702497840)
+                </a>
+            </p>
+
+            <p>Instagram:</p>
+            <a href="https://www.instagram.com/dope__alfredo?igsh=ODAzdGYyanluOWt6"
+               class="ig-link"
+               target="_blank">@dope__alfredo</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
