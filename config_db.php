@@ -6,13 +6,15 @@ $pass = "Matakomatako@10";
 $port = 3306;
 
 try {
+    $dsn = "mysql:host=$host;dbname=$db;port=$port;charset=utf8mb4;sslmode=required";
+    
     $pdo = new PDO(
-        "mysql:host=$host;dbname=$db;port=$port;charset=utf8mb4",
+        $dsn,
         $user,
         $pass,
         [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::MYSQL_ATTR_SSL_CA => "/home/site/wwwroot/DigiCertGlobalRootCA.crt.pem"
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]
     );
 } catch (PDOException $e) {
