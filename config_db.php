@@ -2,7 +2,7 @@
 $host = "dopemusic-server.mysql.database.azure.com";
 $db   = "dopemusic_db";
 $user = "tjedshpbot@dopemusic-server";
-$pass = "YOUR_PASSWORD";
+$pass = "Matakomatako@10";
 $port = 3306;
 
 try {
