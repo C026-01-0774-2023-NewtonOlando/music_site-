@@ -12,8 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare('INSERT INTO users (name, email, password) VALUES (?, ?, ?)');
         $stmt->execute([$name, $email, $hash]);
 
-        // REQUIRED FIX: redirect instead of echo
-        header("Location: login.php");
+        header("Location: /login.php");
         exit;
     } else {
         $error = 'Please fill all fields.';
@@ -36,8 +35,7 @@ if (!empty($error)) {
 }
 ?>
 
-<!-- REQUIRED FIX: explicit action -->
-<form method="post" action="register.php">
+<form method="post" action="/register.php">
   <input name="name" placeholder="Name" required><br><br>
   <input name="email" type="email" placeholder="Email" required><br><br>
   <input name="password" type="password" placeholder="Password" required><br><br>
