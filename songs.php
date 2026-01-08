@@ -24,6 +24,7 @@ $songs = $stmt->fetchAll();
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="stylesheet" href="style.css">
 <title>Songs</title>
 <style>
 body{font-family:Arial;padding:20px;}
