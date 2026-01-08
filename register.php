@@ -1,15 +1,33 @@
 <?php
+session_start();
 require 'config_db.php';
-if($_POST){
-  $stmt=$pdo->prepare("INSERT INTO users(name,email,password) VALUES(?,?,?)");
-  $stmt->execute([$_POST['name'],$_POST['email'],password_hash($_POST['password'],PASSWORD_BCRYPT)]);
-  echo "Registered. <a href='login.php'>Login</a>";
-  exit;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = trim($_POST['name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+
+    if ($name && $email && $password) {
+        $hash = password_hash($password, PASSWORD_BCRYPT);
+        $stmt = $pdo->prepare('INSERT INTO users (name, email, password) VALUES (?, ?, ?)');
+        $stmt->execute([$name, $email, $hash]);
+        echo "Registered successfully. <a href='login.php'>Login</a>";
+        exit;
+    } else {
+        $error = 'Please fill all fields.';
+    }
 }
 ?>
+<!doctype html>
+<html><head>
+<link rel="stylesheet" href="style.css">
+<title>Register</title></head><body>
+<h2>Register</h2>
+<?php if(!empty($error)) echo "<p style='color:red;'>".htmlspecialchars($error)."</p>"; ?>
 <form method="post">
-  <input name="name" placeholder="Name"><br>
-  <input name="email" placeholder="Email"><br>
-  <input name="password" type="password" placeholder="Password"><br>
-  <button>Register</button>
+  <input name="name" placeholder="Name" required><br><br>
+  <input name="email" type="email" placeholder="Email" required><br><br>
+  <input name="password" type="password" placeholder="Password" required><br><br>
+  <button type="submit">Register</button>
 </form>
+</body></html>
