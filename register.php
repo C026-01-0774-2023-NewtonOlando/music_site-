@@ -35,7 +35,7 @@ if (!empty($error)) {
 }
 ?>
 
-<form method="post" action="/register.php">
+  <form method="post" action="/register.php">
   <input name="name" placeholder="Name" required><br><br>
   <input name="email" type="email" placeholder="Email" required><br><br>
   <input name="password" type="password" placeholder="Password" required><br><br>
