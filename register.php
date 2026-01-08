@@ -1,6 +1,10 @@
 <?php
+var_dump($_SERVER['REQUEST_METHOD']);
+exit;
+<?php
 session_start();
 require 'config_db.php';
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name'] ?? '');
