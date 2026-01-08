@@ -19,7 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <!doctype html>
-<html><head><title>Register</title></head><body>
+<html><head>
+<link rel="stylesheet" href="style.css">
+<title>Register</title></head><body>
 <h2>Register</h2>
 <?php if(!empty($error)) echo "<p style='color:red;'>".htmlspecialchars($error)."</p>"; ?>
 <form method="post">
