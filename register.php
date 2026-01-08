@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
 require 'config_db.php';
 
@@ -8,20 +11,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
 
     if ($name && $email && $password) {
-        $hash = password_hash($password, PASSWORD_BCRYPT);
+        try {
+            // Check if email exists
+            $check = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+            $check->execute([$email]);
 
-        $stmt = $pdo->prepare(
-            'INSERT INTO users (name, email, password) VALUES (?, ?, ?)'
-        );
-        $stmt->execute([$name, $email, $hash]);
+            if ($check->fetch()) {
+                $error = "Email already registered. Please login.";
+            } else {
+                $hash = password_hash($password, PASSWORD_BCRYPT);
 
-        header("Location: /login.php");
-        exit;
+                $stmt = $pdo->prepare(
+                    "INSERT INTO users (name, email, password) VALUES (?, ?, ?)"
+                );
+                $stmt->execute([$name, $email, $hash]);
+
+                header("Location: login.php");
+                exit;
+            }
+
+        } catch (PDOException $e) {
+            $error = "Registration failed: " . $e->getMessage();
+        }
     } else {
-        $error = 'Please fill all fields.';
+        $error = "Please fill all fields.";
     }
 }
-?>
+
 <!doctype html>
 <html>
 <head>
@@ -37,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php endif; ?>
 
 <!-- 🔥 THIS LINE IS THE FIX -->
-<form method="post" action="/register.php">
+    <form method="post" action="register.php">
     <input name="name" placeholder="Name" required><br><br>
     <input name="email" type="email" placeholder="Email" required><br><br>
     <input name="password" type="password" placeholder="Password" required><br><br>
