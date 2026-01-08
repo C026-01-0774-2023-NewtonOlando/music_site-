@@ -1,4 +1,285 @@
-body{font-family:Arial, Helvetica, sans-serif;margin:0;padding:20px;background:#f9f9f9;}
-header{background:#222;color:#fff;padding:15px;}
-header a{color:#fff;text-decoration:none;margin-right:10px;}
-.hero{padding:20px;background:#fff;border-radius:6px;max-width:800px;}
+/* GLOBAL */
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f1f1;
+}
+
+/* HEADER */
+.header {
+    background: #111;
+    padding: 25px;
+    color: #fff;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* NAV */
+nav {
+    background: #111;
+    padding: 14px 25px;
+}
+nav a {
+    color: #fff;
+    margin-right: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 6px 10px;
+    border-radius: 4px;
+}
+nav a:hover {
+    background: #333;
+}
+
+/* FORMS */
+.auth-box {
+    max-width: 420px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+}
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+button {
+    background: #111;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+button:hover { background: #333; }
+
+/* SONGS */
+.song-box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+audio { width: 100%; }
+/* AUTH PAGES */
+.auth-box {
+    max-width: 420px;
+    margin: 60px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+.auth-box h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+.auth-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+.auth-box button {
+    width: 100%;
+    padding: 12px;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.auth-box button:hover {
+    background: #333;
+}
+
+/* SONG DASHBOARD */
+.song-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+.song-box strong {
+    font-size: 17px;
+}
+audio {
+    width: 100%;
+    margin-top: 10px;
+}
+ /* ARTIST DESCRIPTION SECTION */
+h2 {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 15px;
+    color: #111;
+}
+
+p {
+    line-height: 1.7;
+    color: #444;
+}
+
+/* FULL WIDTH IMAGE */
+.full-width-img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin: 30px 0;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+/* SUPPORT & COMMUNICATION BOX */
+.support-box {
+    background: linear-gradient(135deg, #ffffff, #f7f7f7);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+    margin-top: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.support-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.12);
+}
+
+/* TITLES INSIDE SUPPORT BOX */
+.support-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: #000;
+}
+
+/* MPESA TEXT */
+.support-box strong {
+    color: #0b8457;
+    font-size: 18px;
+}
+
+/* WHATSAPP LINK */
+.wa-link {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 12px 22px;
+    background: #25D366;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.wa-link:hover {
+    background: #1ebc5a;
+    transform: scale(1.05);
+}
+
+/* INSTAGRAM LINK */
+.ig-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-weight: bold;
+    color: #E1306C;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.ig-link:hover {
+    text-decoration: underline;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    .full-width-img {
+        height: 240px;
+    }
+
+    .support-box {
+        padding: 22px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+}
+ /* ARTIST DESCRIPTION HEADER */
+h2 {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    margin-bottom: 14px;
+    color: #111;
+    position: relative;
+}
+
+/* subtle underline accent */
+h2::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 4px;
+    background: linear-gradient(90deg, #000, #666);
+    margin: 12px auto 0;
+    border-radius: 3px;
+}
+
+/* INTRO TEXT */
+.artist-intro {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: #444;
+    max-width: 720px;
+    margin: 18px auto 35px;
+    line-height: 1.8;
+}
+
+/* highlight artist name */
+.artist-intro strong {
+    font-weight: 800;
+    color: #000;
+}
+
+/* soft fade-in effect */
+.artist-intro,
+h2 {
+    animation: fadeUp 0.9s ease both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* MOBILE TWEAK */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 26px;
+    }
+
+    .artist-intro {
+        font-size: 16px;
+        padding: 0 15px;
+    }
+}
