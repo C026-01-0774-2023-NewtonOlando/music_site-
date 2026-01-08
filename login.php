@@ -20,12 +20,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <!doctype html>
-<html><head><title>Login</title></head><body>
+<html><head>
+<link rel="stylesheet" href="style.css">
+<title>Login</title></head><body>
 <h2>Login</h2>
 <?php if(!empty($error)) echo "<p style='color:red;'>".htmlspecialchars($error)."</p>"; ?>
 <form method="post">
   <input name="email" type="email" placeholder="Email" required><br><br>
   <input name="password" type="password" placeholder="Password" required><br><br>
   <button type="submit">Login</button>
+  <p style="text-align:center; margin-top:15px;">
+    <a href="forgot_password.php" style="text-decoration:none; font-weight:bold;">
+        Forgot your password?
+    </a>
+</p>
+
 </form>
 </body></html>
