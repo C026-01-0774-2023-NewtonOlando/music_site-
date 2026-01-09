@@ -2,13 +2,14 @@
 session_start();
 require 'config_db.php';
 
+$error = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
 
     if ($name && $email && $password) {
-
         try {
             $hash = password_hash($password, PASSWORD_BCRYPT);
 
@@ -17,31 +18,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             );
             $stmt->execute([$name, $email, $hash]);
 
-            // SUCCESS → redirect
+            // redirect after successful registration
             header("Location: login.php");
             exit;
 
         } catch (PDOException $e) {
-
-            // Email already exists
-            if ($e->getCode() == 23000) {
-                $error = "Email already registered.";
-            } else {
-                $error = "Registration failed.";
-            }
+            // 🔴 TEMP DEBUG — DO NOT REMOVE YET
+            die("Registration failed: " . $e->getMessage());
         }
-
     } else {
-        $error = "Please fill all fields.";
+        $error = 'Please fill all fields.';
     }
 }
 ?>
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Register</title>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+    <title>Register</title>
 </head>
 <body>
 
