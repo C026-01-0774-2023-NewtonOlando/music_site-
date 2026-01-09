@@ -1,46 +1,36 @@
 <?php
-// 🔴 SHOW ERRORS (IMPORTANT FOR AZURE DEBUGGING)
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 session_start();
 require 'config_db.php';
 
-$error = '';
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
 
     if ($name && $email && $password) {
+
         try {
-            // 🔍 Check if email already exists
-            $check = $pdo->prepare("SELECT id FROM users WHERE email = ?");
-            $check->execute([$email]);
+            $hash = password_hash($password, PASSWORD_BCRYPT);
 
-            if ($check->fetch()) {
-                $error = "Email already registered. Please login.";
-            } else {
-                // 🔐 Hash password
-                $hash = password_hash($password, PASSWORD_BCRYPT);
+            $stmt = $pdo->prepare(
+                "INSERT INTO users (name, email, password) VALUES (?, ?, ?)"
+            );
+            $stmt->execute([$name, $email, $hash]);
 
-                // 💾 Insert user
-                $stmt = $pdo->prepare(
-                    "INSERT INTO users (name, email, password) VALUES (?, ?, ?)"
-                );
-                $stmt->execute([$name, $email, $hash]);
-
-                // ✅ Redirect to login
-                header("Location: login.php");
-                exit;
-            }
+            // SUCCESS → redirect
+            header("Location: login.php");
+            exit;
 
         } catch (PDOException $e) {
-            // ❌ Database error
-            $error = "Registration failed: " . $e->getMessage();
+
+            // Email already exists
+            if ($e->getCode() == 23000) {
+                $error = "Email already registered.";
+            } else {
+                $error = "Registration failed.";
+            }
         }
+
     } else {
         $error = "Please fill all fields.";
     }
@@ -50,8 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css">
     <title>Register</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -67,10 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input name="password" type="password" placeholder="Password" required><br><br>
     <button type="submit">Register</button>
 </form>
-
-<p style="margin-top:15px;">
-    Already have an account? <a href="login.php">Login</a>
-</p>
 
 </body>
 </html>
