@@ -5,23 +5,25 @@ require 'config_db.php';
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['name'] ?? '');
+    $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
 
-    if ($username && $email && $password) {
+    if ($name && $email && $password) {
         try {
             $hash = password_hash($password, PASSWORD_BCRYPT);
 
             $stmt = $pdo->prepare(
                 "INSERT INTO users (username, email, password) VALUES (?, ?, ?)"
             );
-            $stmt->execute([$username, $email, $hash]);
+            $stmt->execute([$name, $email, $hash]);
 
+            // redirect after successful registration
             header("Location: login.php");
             exit;
 
         } catch (PDOException $e) {
+            // 🔴 TEMP DEBUG — DO NOT REMOVE YET
             die("Registration failed: " . $e->getMessage());
         }
     } else {
@@ -29,3 +31,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Register</title>
+</head>
+<body>
+
+<h2>Register</h2>
+
+<?php if (!empty($error)): ?>
+    <p style="color:red;"><?php echo htmlspecialchars($error); ?></p>
+<?php endif; ?>
+
+<form method="post" action="register.php">
+    <input name="username" placeholder="Name" required><br><br>
+    <input name="email" type="email" placeholder="Email" required><br><br>
+    <input name="password" type="password" placeholder="Password" required><br><br>
+    <button type="submit">Register</button>
+</form>
+
+</body>
+</html> 
