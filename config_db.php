@@ -2,7 +2,7 @@
 $host = "dope.mysql.database.azure.com";
 $db   = "musicdb";
 $user = "dope__alfredo";
-$pass = "YOUR_NEW_PASSWORD";   // the one that worked in Cloud Shell
+$pass = "Matakomatako@10";   // the one that worked in Cloud Shell
 $port = 3306;
 
 try {
