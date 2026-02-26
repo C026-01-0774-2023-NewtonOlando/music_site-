@@ -8,7 +8,7 @@ if (!isset($_SESSION['uid'])) {
 }
 
 // Fetch logged-in user
-$stmt = $pdo->prepare("SELECT id, name, is_paid FROM users WHERE id = ?");
+$stmt = $pdo->prepare("SELECT id, username, role FROM users WHERE id = ?");
 $stmt->execute([$_SESSION['uid']]);
 $user = $stmt->fetch();
 
