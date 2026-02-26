@@ -5,7 +5,7 @@ require 'config_db.php';
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = trim($_POST['name'] ?? '');
+    $name = trim($_POST['username'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
 
@@ -18,12 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             );
             $stmt->execute([$name, $email, $hash]);
 
-            // redirect after successful registration
             header("Location: login.php");
             exit;
 
         } catch (PDOException $e) {
-            // 🔴 TEMP DEBUG — DO NOT REMOVE YET
             die("Registration failed: " . $e->getMessage());
         }
     } else {
@@ -54,4 +52,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </form>
 
 </body>
-</html> 
+</html>
