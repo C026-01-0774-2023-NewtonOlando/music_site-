@@ -8,7 +8,7 @@ if (!isset($_SESSION['uid'])) {
 }
 
 // Fetch logged-in user
-$stmt = $pdo->prepare("SELECT id, username, role FROM users WHERE id = ?");
+$stmt = $pdo->prepare("SELECT id, username, is_paid FROM users WHERE id = ?");
 $stmt->execute([$_SESSION['uid']]);
 $user = $stmt->fetch();
 
@@ -65,7 +65,7 @@ audio {
 
 <body>
 
-<h1>Welcome, <?php echo htmlspecialchars($user['name']); ?></h1>
+<h1>Welcome, <?php echo htmlspecialchars($user['username']); ?></h1>
 <h2>Available Songs</h2>
 
 <?php if (empty($songs)): ?>
